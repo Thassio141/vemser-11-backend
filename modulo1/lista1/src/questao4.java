@@ -2,13 +2,9 @@ import java.util.Scanner;
 public class questao4 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int a ,b,c;
-
-        System.out.println("Valor da variavel A: ");
-        a = sc.nextInt();
-
-        System.out.println("Valor da variavel B: ");
-        b = sc.nextInt();
+        int a = 10;
+        int b = 20;
+        int c;
 
         c = a;
         a = b;
