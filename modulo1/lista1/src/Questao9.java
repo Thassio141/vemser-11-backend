@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class questao9 {
+public class Questao9 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int horaInicial, minutoInicial, horaFinal, minutoFinal, duracaoJogoHoras, duracaoJogoMinutos;

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class questao2 {
+public class Questao2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite o numero correspondente ao estado desejado\n" +

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class questao8 {
+public class Questao8 {
     public static void main(String[] args) {
         double salario , aumento, diferenca;
         String cargo;

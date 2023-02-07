@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class questao6 {
+public class Questao6 {
     public static void main(String[] args) {
         int eleitores, votos_brancos, nulos , validos;
         Scanner sc = new Scanner(System.in);

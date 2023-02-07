@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class questao3   {
+public class Questao3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Palavra que você quer traduzir (obs: escrever tudo minusculo porfavor): ");

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class questao4 {
+public class Questao4 {
     public static void main(String[] args) {
         double[][] matriz = new double[4][5];
         Scanner sc = new Scanner(System.in);

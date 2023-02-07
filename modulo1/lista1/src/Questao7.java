@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class questao7 {
+public class Questao7 {
     public static void main(String[] args) {
         String codigo;
         int qtd;

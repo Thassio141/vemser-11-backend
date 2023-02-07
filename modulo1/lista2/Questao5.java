@@ -1,4 +1,4 @@
-public class questao5 {
+public class Questao5 {
     public static void main(String[] args) {
         //somar colunas
         double sum = 0, sum1 =0 , sum2 = 0;

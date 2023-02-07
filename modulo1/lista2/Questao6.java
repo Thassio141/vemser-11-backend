@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class questao6 {
+public class Questao6 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int[] vetor = {1,9,3,4,2,6,7,8,9,10};
