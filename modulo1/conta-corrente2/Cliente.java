@@ -10,18 +10,25 @@ public class Cliente {
         this.contato[0] = contato;
         this.contato[1] = contato2;
         this.enderecos[0] = enderecos;
-        this.enderecos[1] = enderecos;
+        this.enderecos[1] = enderecos2;
     }
 
+    //- imprimirContatos(): colocar verificação de lista if(c!=null)
+    //- imprimirEnderecos(): colocar verificação de lista if(e!=null)
+
     public void imprimirContatos(){
-        for ( int x = 0 ; x < contato.length ; x ++) {
-            contato[x].imprimirContato();
-        }
+            for ( int x = 0 ; x < contato.length ; x ++) {
+                if (contato[x] != null){
+                    contato[x].imprimirContato();
+                }
+            }
     }
 
     public void imprimirEndercos(){
         for ( int x = 0; x < enderecos.length; x ++){
-            enderecos[x].imprimirEndereco();
+            if (contato[x] != null) {
+                enderecos[x].imprimirEndereco();
+            }
         }
     }
 
