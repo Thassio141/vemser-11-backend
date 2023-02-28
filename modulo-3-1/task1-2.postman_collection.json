@@ -60,7 +60,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Thassio\",\r\n    \"dataNascimento\": \"2010-08-09\",\r\n    \"cpf\": \"01234567890\",\r\n    \"email\": \"thassio@vagner.com\",\r\n    \"idPessoa\": 1000\r\n}",
+							"raw": "{\r\n    \"nome\": \"Thassio\",\r\n    \"dataNascimento\": \"2010-08-09\",\r\n    \"cpf\": \"01234567890\",\r\n    \"email\": \"thassio@vagner.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,7 +96,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Thassio Vagner\",\r\n    \"dataNascimento\": \"2010-08-09\",\r\n    \"cpf\": \"01234567890\",\r\n    \"email\": \"thassio@vagner.com\",\r\n    \"idPessoa\": 10170\r\n}",
+							"raw": "{\r\n    \"nome\": \"Thassio Vagner\",\r\n    \"dataNascimento\": \"2010-08-09\",\r\n    \"cpf\": \"01234567890\",\r\n    \"email\": \"thassio@vagner.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -104,13 +104,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{dbc_api}}/pessoa/10170",
+							"raw": "{{dbc_api}}/pessoa/10174",
 							"host": [
 								"{{dbc_api}}"
 							],
 							"path": [
 								"pessoa",
-								"10170"
+								"10174"
 							]
 						}
 					},
@@ -221,7 +221,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idPessoa\": 9959,\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"telefone\": \"(71)98765-4321\",\r\n    \"descricao\": \"telefone\",\r\n    \"idContato\": 1745\r\n}",
+							"raw": "{\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"telefone\": \"(71)98765-4321\",\r\n    \"descricao\": \"telefone\",\r\n    \"idContato\": 1745\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
