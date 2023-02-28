@@ -65,7 +65,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": 1,\r\n    \"id\": 1,\r\n    \"name\": \"id labore ex et quam laborum\",\r\n    \"email\": \"Eliseo@gardner.biz\",\r\n    \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\r\n  }",
+							"raw": "{\r\n    \"postId\": 1,\r\n    \"id\": 1,\r\n    \"name\": \"id labore ex et quam laborum\",\r\n    \"email\": \"teste@teste.biz\",\r\n    \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -197,7 +197,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/albums",
+							"raw": "https://jsonplaceholder.typicode.com/albums/3",
 							"protocol": "https",
 							"host": [
 								"jsonplaceholder",
@@ -205,7 +205,8 @@
 								"com"
 							],
 							"path": [
-								"albums"
+								"albums",
+								"3"
 							]
 						}
 					},
@@ -214,6 +215,16 @@
 				{
 					"name": "Delete_albums",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU1VBUklPIiwiUk9MRV9NQVJLRVRJTkciXSwiaWF0IjoxNjc3NTUzNjg5LCJleHAiOjE2Nzc2NDAwODl9.Y_JX5Y_EYMBLbYqruDkytY3LB7JWNKe-wGt4GoI4g8Y",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -264,7 +275,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": 1,\r\n    \"id\": 1,\r\n    \"name\": \"id labore ex et quam laborum\",\r\n    \"email\": \"Eliseo@gardner.biz\",\r\n    \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\r\n  }",
+							"raw": "{\r\n    \"albumId\": 1,\r\n    \"id\": 1,\r\n    \"title\": \"testando api\",\r\n    \"url\": \"https://via.placeholder.com/600/92c952\",\r\n    \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -293,7 +304,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": 1,\r\n    \"id\": 1,\r\n    \"name\": \"id labore ex et quam laborum\",\r\n    \"email\": \"Eliseo@gardner.biz\",\r\n    \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\r\n  }",
+							"raw": "{\r\n    \"albumId\": 1,\r\n    \"id\": 1,\r\n    \"title\": \"testando 123\",\r\n    \"url\": \"https://via.placeholder.com/600/92c952\",\r\n    \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -301,7 +312,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/comments/1",
+							"raw": "https://jsonplaceholder.typicode.com/photos/1",
 							"protocol": "https",
 							"host": [
 								"jsonplaceholder",
@@ -309,7 +320,7 @@
 								"com"
 							],
 							"path": [
-								"comments",
+								"photos",
 								"1"
 							]
 						}
@@ -331,7 +342,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/comments/1",
+							"raw": "https://jsonplaceholder.typicode.com/photos/1",
 							"protocol": "https",
 							"host": [
 								"jsonplaceholder",
@@ -339,7 +350,7 @@
 								"com"
 							],
 							"path": [
-								"comments",
+								"photos",
 								"1"
 							]
 						}
@@ -378,7 +389,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": 1,\r\n    \"id\": 1,\r\n    \"name\": \"id labore ex et quam laborum\",\r\n    \"email\": \"Eliseo@gardner.biz\",\r\n    \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\r\n  }",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"id\": 1,\r\n    \"title\": \"delectus aut autem\",\r\n    \"completed\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -407,7 +418,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": 1,\r\n    \"id\": 1,\r\n    \"name\": \"id labore ex et quam laborum\",\r\n    \"email\": \"Eliseo@gardner.biz\",\r\n    \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\r\n  }",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"id\": 1,\r\n    \"title\": \"teste\",\r\n    \"completed\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -415,7 +426,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/comments/1",
+							"raw": "https://jsonplaceholder.typicode.com/todos/1",
 							"protocol": "https",
 							"host": [
 								"jsonplaceholder",
@@ -423,7 +434,7 @@
 								"com"
 							],
 							"path": [
-								"comments",
+								"todos",
 								"1"
 							]
 						}
@@ -521,7 +532,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": 1,\r\n    \"id\": 1,\r\n    \"name\": \"id labore ex et quam laborum\",\r\n    \"email\": \"Eliseo@gardner.biz\",\r\n    \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\r\n  }",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"name\": \"Mudando nome\",\r\n        \"username\": \"Bret\",\r\n        \"email\": \"Sincere@april.biz\",\r\n        \"address\": {\r\n            \"street\": \"Kulas Light\",\r\n            \"suite\": \"Apt. 556\",\r\n            \"city\": \"Gwenborough\",\r\n            \"zipcode\": \"92998-3874\",\r\n            \"geo\": {\r\n                \"lat\": \"-37.3159\",\r\n                \"lng\": \"81.1496\"\r\n            }\r\n        },\r\n        \"phone\": \"1-770-736-8031 x56442\",\r\n        \"website\": \"hildegard.org\",\r\n        \"company\": {\r\n            \"name\": \"Romaguera-Crona\",\r\n            \"catchPhrase\": \"Multi-layered client-server neural-net\",\r\n            \"bs\": \"harness real-time e-markets\"\r\n        }\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -529,7 +540,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/comments/1",
+							"raw": "https://jsonplaceholder.typicode.com/users/1",
 							"protocol": "https",
 							"host": [
 								"jsonplaceholder",
@@ -537,7 +548,7 @@
 								"com"
 							],
 							"path": [
-								"comments",
+								"users",
 								"1"
 							]
 						}
