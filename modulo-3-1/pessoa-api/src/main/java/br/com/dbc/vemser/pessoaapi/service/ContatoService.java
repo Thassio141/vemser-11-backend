@@ -1,51 +1,46 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
-import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
-import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
+import br.com.dbc.vemser.pessoaapi.entity.Contato;
+import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 
 import java.util.List;
 
 public class ContatoService {
+    private ContatoRepository contatoRepository;
 
-    private PessoaRepository pessoaRepository;
-
-    public PessoaService(){
-        pessoaRepository = new PessoaRepository();
+    public ContatoService(){
+        contatoRepository = new ContatoRepository();
     }
 
-    public Pessoa create(Pessoa pessoa){
-        return pessoaRepository.create(pessoa);
+    public Contato create(Contato contato){
+        return contatoRepository.create(contato);
     }
 
-    public List<Pessoa> list(){
-        return pessoaRepository.list();
+    public List<Contato> list(){
+        return contatoRepository.list();
     }
 
-    public Pessoa update(Integer id,
-                         Pessoa pessoaAtualizar) throws Exception {
-        Pessoa pessoaRecuperada = getPessoa(id);
-
-        pessoaRecuperada.setCpf(pessoaAtualizar.getCpf());
-        pessoaRecuperada.setNome(pessoaAtualizar.getNome());
-        pessoaRecuperada.setDataNascimento(pessoaAtualizar.getDataNascimento());
-
-        return pessoaRecuperada;
+    public Contato update(Integer id,Contato contatoAtualizar) {
+        contatoAtualizar.setTipoContato(contatoAtualizar.getTipoContato());
+        contatoAtualizar.setNumero(contatoAtualizar.getNumero());
+        contatoAtualizar.setDescricao(contatoAtualizar.getDescricao());
+        return contatoAtualizar;
     }
 
     public void delete(Integer id) throws Exception {
-        Pessoa pessoaRecuperada = getPessoa(id);
-        pessoaRepository.delete(pessoaRecuperada);
+        Contato contatoRecuperado = getContato(id);
+        contatoRepository.delete(contatoRecuperado);
     }
 
-    public List<Pessoa> listByName(String nome) {
-        return pessoaRepository.listByName(nome);
+    public List<Contato> listByNumber(String numero) {
+        return contatoRepository.listByNumber(numero);
     }
 
-    private Pessoa getPessoa(Integer id) throws Exception {
-        Pessoa pessoaRecuperada = pessoaRepository.list().stream()
-                .filter(pessoa -> pessoa.getIdPessoa().equals(id))
+    private Contato getContato(Integer id) throws Exception {
+        Contato contatoRecuperado = contatoRepository.list().stream()
+                .filter(contato -> contato.getIdContato().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Pessoa não encontrada!"));
-        return pessoaRecuperada;
+                .orElseThrow(() -> new Exception("Contato não encontrado!"));
+        return contatoRecuperado;
     }
 }

@@ -1,8 +1,8 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
 
-import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
-import br.com.dbc.vemser.pessoaapi.service.PessoaService;
+import br.com.dbc.vemser.pessoaapi.entity.Contato;
+import br.com.dbc.vemser.pessoaapi.service.ContatoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,15 +11,15 @@ import java.util.List;
 @RequestMapping("/contato") // localhost:8080/contato
 public class ContatoController {
 
-    private PessoaService pessoaService;
+    private ContatoService contatoService;
 
-    public PessoaController() {
-        pessoaService = new PessoaService();
+    public ContatoController() {
+        contatoService = new ContatoService();
     }
 
-    @GetMapping("/") // GET localhost:8080/pessoa/hello
-    public String hello() {
-        return "Hello world!";
+    @GetMapping("/")
+    public List<Contato> list() {
+        return contatoService.list();
     }
 
     @GetMapping("/hello-2") // GET localhost:8080/pessoa/hello2
