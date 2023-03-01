@@ -1,5 +1,4 @@
 package br.com.dbc.vemser.pessoaapi.repository;
-
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
 
@@ -8,15 +7,17 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-
 public class ContatoRepository {
     private static List<Contato> listaContatos = new ArrayList<>();
+
     private AtomicInteger COUNTER = new AtomicInteger();
 
     public ContatoRepository() {
-        listaContatos.add(new Contato(COUNTER.incrementAndGet(), COUNTER.incrementAndGet(), TipoContato.COMERCIAL, "79 998482999", "descricao teste"));
-        listaContatos.add(new Contato(COUNTER.incrementAndGet(), COUNTER.incrementAndGet(), TipoContato.COMERCIAL, "79 994324312", "descricao teste"));
-        listaContatos.add(new Contato(COUNTER.incrementAndGet(), COUNTER.incrementAndGet(), TipoContato.RESIDENCIAL, "79 982131990", "descricao teste"));
+        listaContatos.add(new Contato(COUNTER.incrementAndGet() /*1*/,1, TipoContato.RESIDENCIAL,"198492999","descricao teste"));
+        listaContatos.add(new Contato(COUNTER.incrementAndGet() /*1*/,2, TipoContato.RESIDENCIAL,"298492999","descricao teste"));
+        listaContatos.add(new Contato(COUNTER.incrementAndGet() /*1*/,3, TipoContato.COMERCIAL,"398492999","descricao teste"));
+        listaContatos.add(new Contato(COUNTER.incrementAndGet() /*1*/,4, TipoContato.COMERCIAL,"498492999","descricao teste"));
+        listaContatos.add(new Contato(COUNTER.incrementAndGet() /*1*/,5, TipoContato.COMERCIAL,"598492999","descricao teste"));
     }
 
     public Contato create(Contato contato) {
@@ -29,20 +30,13 @@ public class ContatoRepository {
         return listaContatos;
     }
 
-    public Contato update(Integer id,Contato contatoAtualizar) {
-        contatoAtualizar.setTipoContato(contatoAtualizar.getTipoContato());
-        contatoAtualizar.setNumero(contatoAtualizar.getNumero());
-        contatoAtualizar.setDescricao(contatoAtualizar.getDescricao());
-        return contatoAtualizar;
-    }
-
     public void delete(Contato contato) {
         listaContatos.remove(contato);
     }
 
-    public List<Contato> listByNumber(String numero) {
+    public List<Contato> listByIdPessoa(Integer idPessoa) {
         return listaContatos.stream()
-                .filter(contato -> contato.getNumero().contains(numero))
+                .filter(contato -> contato.getIdPessoa().equals(idPessoa))
                 .collect(Collectors.toList());
     }
 }
