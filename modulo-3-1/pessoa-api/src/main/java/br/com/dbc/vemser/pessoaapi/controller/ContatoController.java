@@ -1,55 +1,49 @@
-package br.com.dbc.vemser.pessoaapi.controller;
-
-
-import br.com.dbc.vemser.pessoaapi.entity.Contato;
-import br.com.dbc.vemser.pessoaapi.service.ContatoService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/contato") // localhost:8080/contato
-public class ContatoController {
-
-    private ContatoService contatoService;
-
-    public ContatoController() {
-        contatoService = new ContatoService();
-    }
-
-    @GetMapping("/")
-    public List<Contato> list() {
-        return contatoService.list();
-    }
-
-    @GetMapping("/hello-2") // GET localhost:8080/pessoa/hello2
-    public String hello2() {
-        return "Hello world 2!";
-    }
-
-    @GetMapping // GET localhost:8080/pessoa
-    public List<Pessoa> list() {
-        return pessoaService.list();
-    }
-
-    @GetMapping("/byname") // GET localhost:8080/pessoa/byname?nome=Rafa
-    public List<Pessoa> listByName(@RequestParam("nome") String nome) {
-        return pessoaService.listByName(nome);
-    }
-
-    @PostMapping // POST localhost:8080/pessoa
-    public Pessoa create(@RequestBody Pessoa pessoa) {
-        return pessoaService.create(pessoa);
-    }
-
-    @PutMapping("/{idPessoa}") // PUT localhost:8080/pessoa/1000
-    public Pessoa update(@PathVariable("idPessoa") Integer id,
-                         @RequestBody Pessoa pessoaAtualizar) throws Exception {
-        return pessoaService.update(id, pessoaAtualizar);
-    }
-
-    @DeleteMapping("/{idPessoa}") // DELETE localhost:8080/pessoa/10
-    public void delete(@PathVariable("idPessoa") Integer id) throws Exception {
-        pessoaService.delete(id);
-    }
-}
+//package br.com.dbc.vemser.pessoaapi.controller;
+//
+//
+//import br.com.dbc.vemser.pessoaapi.entity.Contato;
+//import br.com.dbc.vemser.pessoaapi.service.ContatoService;
+//import org.springframework.web.bind.annotation.*;
+//
+//import java.util.List;
+//
+//@RestController
+//@RequestMapping("/contato")
+//public class ContatoController {
+//
+// erro  ao importar Service
+// ----------- erro na parte API/http tirar duvida aula --------
+//    private ContatoService contatoService;
+//
+//    public ContatoController() {
+//        contatoService = new ContatoService();
+//    }
+//
+//    @GetMapping
+//    public List<Contato> list() {
+//        return contatoService.list();
+//    }
+//
+//    @GetMapping("/{idPessoa}/pessoa")
+//    public List<Contato> listar(@PathVariable("idPessoa") Integer idPessoa){
+//
+//        return contatoService.listar(idPessoa);
+//    }
+//
+//    @PostMapping("/{idPessoa}")
+//    public Contato create(@PathVariable("idPessoa"), @RequestBody Contato contato) {
+//
+//        return contatoService.create(contato);
+//    }
+//
+//    @PutMapping("/{idContato}")
+//    public Contato update(@PathVariable("idContato") Integer id,
+//                         @RequestBody Contato contatoAtualizar) throws Exception {
+//        return contatoService.update(id, contatoAtualizar);
+//    }
+//
+//    @DeleteMapping("/{idContato}")
+//    public void delete(@PathVariable("idContato") Integer id) throws Exception {
+//        contatoService.delete(id);
+//    }
+//}
