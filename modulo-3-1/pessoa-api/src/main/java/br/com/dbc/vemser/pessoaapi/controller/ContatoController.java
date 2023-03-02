@@ -8,10 +8,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/contato")
 public class ContatoController {
-    private ContatoService contatoService;
+    private final ContatoService contatoService;
 
-    public ContatoController() {
-        contatoService = new ContatoService();
+    public ContatoController(ContatoService contatoService) {
+        this.contatoService = contatoService;
     }
 
     @GetMapping
@@ -20,7 +20,7 @@ public class ContatoController {
     }
 
     @GetMapping("/{idPessoa}")
-    public List<Contato> listByNumero(@PathVariable("idPessoa") Integer idPessoa) {
+    public List<Contato> listByIdEndereco(@PathVariable("idPessoa") Integer idPessoa) {
         return contatoService.listByIdPessoa(idPessoa);
     }
 
