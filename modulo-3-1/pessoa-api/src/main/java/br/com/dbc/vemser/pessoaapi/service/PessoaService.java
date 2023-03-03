@@ -29,7 +29,7 @@ public class PessoaService {
     public Pessoa update(Integer id,
                          Pessoa pessoaAtualizar) throws Exception {
         Pessoa pessoaRecuperada = getPessoa(id);
-
+        getPessoa(id);
         validarPessoa(pessoaAtualizar);
 
         pessoaRecuperada.setCpf(pessoaAtualizar.getCpf());
