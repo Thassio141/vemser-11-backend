@@ -41,12 +41,14 @@ public class PessoaController {
 
     @PostMapping // POST localhost:8080/pessoa
     public Pessoa create(@RequestBody Pessoa pessoa) throws Exception {
+        pessoaService.validarPessoa(pessoa);
         return pessoaService.create(pessoa);
     }
 
     @PutMapping("/{idPessoa}") // PUT localhost:8080/pessoa/1000
     public Pessoa update(@PathVariable("idPessoa") Integer id,
                          @RequestBody Pessoa pessoaAtualizar) throws Exception {
+        pessoaService.validarPessoa(pessoaAtualizar);
         return pessoaService.update(id, pessoaAtualizar);
     }
 
