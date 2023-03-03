@@ -1,10 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
-import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +11,15 @@ public class ContatoService {
 
     private final ContatoRepository contatoRepository;
 
-    public ContatoService(ContatoRepository contatoRepository){
+    private final PessoaService pessoaService;
+
+    public ContatoService(ContatoRepository contatoRepository, PessoaService pessoaService){
         this.contatoRepository = contatoRepository;
+        this.pessoaService = pessoaService;
     }
 
-    public Contato create(Integer id, Contato contato){
+    public Contato create(Integer id, Contato contato) throws Exception {
+        pessoaService.getPessoa(id);
         contato.setIdPessoa(id);
         return contatoRepository.create(contato);
     }
@@ -27,10 +28,9 @@ public class ContatoService {
         return contatoRepository.list();
     }
 
-    public Contato update(Integer id,
-                         Contato contatoAtualizar) throws Exception {
+    public Contato update(Integer id, Contato contatoAtualizar) throws Exception {
+        pessoaService.getPessoa(contatoAtualizar.getIdPessoa());
         Contato contatoRecuperado = getContato(id);
-
         contatoRecuperado.setTipoContato(contatoAtualizar.getTipoContato());
         contatoRecuperado.setNumero(contatoAtualizar.getNumero());
         contatoRecuperado.setDescricao(contatoAtualizar.getDescricao());

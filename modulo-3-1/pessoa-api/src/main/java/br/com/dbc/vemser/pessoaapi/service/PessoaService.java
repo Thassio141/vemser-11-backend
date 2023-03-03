@@ -48,12 +48,11 @@ public class PessoaService {
         return pessoaRepository.listByName(nome);
     }
 
-    private Pessoa getPessoa(Integer id) throws Exception {
-        Pessoa pessoaRecuperada = pessoaRepository.list().stream()
+    public Pessoa getPessoa(Integer id) throws Exception {
+        return pessoaRepository.list().stream()
                 .filter(pessoa -> pessoa.getIdPessoa().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new Exception("Pessoa não encontrada!"));
-        return pessoaRecuperada;
     }
 
     public void validarPessoa(Pessoa pessoa) throws Exception {

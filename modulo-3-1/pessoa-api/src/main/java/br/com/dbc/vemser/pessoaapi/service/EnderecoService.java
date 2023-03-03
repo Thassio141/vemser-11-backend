@@ -10,12 +10,14 @@ import java.util.List;
 public class EnderecoService {
 
     private final EnderecoRepository enderecoRepository;
-
-    public EnderecoService(EnderecoRepository enderecoRepository) {
+    private final PessoaService pessoaService;
+    public EnderecoService(EnderecoRepository enderecoRepository, PessoaService pessoaService) {
         this.enderecoRepository = enderecoRepository;
+        this.pessoaService = pessoaService;
     }
 
-    public Endereco create(Integer id, Endereco endereco){
+    public Endereco create(Integer id, Endereco endereco) throws Exception {
+        pessoaService.getPessoa(id);
         endereco.setIdPessoa(id);
         return enderecoRepository.create(endereco);
     }
@@ -24,8 +26,8 @@ public class EnderecoService {
         return enderecoRepository.list();
     }
 
-    public Endereco update(Integer id,
-                           Endereco enderecoAtualizar) throws Exception {
+    public Endereco update(Integer id, Endereco enderecoAtualizar) throws Exception {
+        pessoaService.getPessoa(enderecoAtualizar.getIdPessoa());
         Endereco enderecoRecuperado = getEndereco(id);
 
         enderecoRecuperado.setTipo(enderecoAtualizar.getTipo());

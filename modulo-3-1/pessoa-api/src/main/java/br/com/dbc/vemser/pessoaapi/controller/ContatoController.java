@@ -28,7 +28,7 @@ public class ContatoController {
     }
 
     @PostMapping("/{idPessoa}")
-    public ResponseEntity<Contato> create(@PathVariable("idPessoa") Integer idPessoa, @RequestBody @Valid Contato contato) {
+    public ResponseEntity<Contato> create(@PathVariable("idPessoa") Integer idPessoa, @RequestBody @Valid Contato contato) throws Exception {
         return new ResponseEntity<>(contatoService.create(idPessoa, contato), HttpStatus.OK);
     }
 
