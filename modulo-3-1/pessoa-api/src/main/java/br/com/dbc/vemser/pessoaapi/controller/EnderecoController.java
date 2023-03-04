@@ -1,8 +1,8 @@
 package br.com.dbc.vemser.pessoaapi.controller;
+import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
-import br.com.dbc.vemser.pessoaapi.entity.Contato;
-import br.com.dbc.vemser.pessoaapi.entity.Endereco;
 import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/endereco")
 @Validated
+@Slf4j
 public class EnderecoController {
     private final EnderecoService enderecoService;
 
@@ -37,12 +38,12 @@ public class EnderecoController {
     }
 
     @PostMapping("/{idPessoa}")
-    public ResponseEntity<EnderecoDTO> create(@PathVariable("idPessoa") Integer idPessoa, @RequestBody @Valid Endereco endereco) throws Exception {
+    public ResponseEntity<EnderecoDTO> create(@PathVariable("idPessoa") Integer idPessoa, @RequestBody @Valid EnderecoCreateDTO endereco) throws Exception {
         return new ResponseEntity<>(enderecoService.create(idPessoa, endereco), HttpStatus.OK);
     }
 
     @PutMapping("/{idEndereco}")
-    public ResponseEntity<EnderecoDTO> update(@PathVariable("idEndereco") Integer id, @RequestBody @Valid Endereco enderecoAtualizar) throws Exception {
+    public ResponseEntity<EnderecoDTO> update(@PathVariable("idEndereco") Integer id, @RequestBody @Valid EnderecoCreateDTO enderecoAtualizar) throws Exception {
         return new ResponseEntity<>(enderecoService.update(id, enderecoAtualizar), HttpStatus.OK);
     }
 
