@@ -1,8 +1,6 @@
-package br.com.dbc.vemser.pessoaapi.entity;
+package br.com.dbc.vemser.pessoaapi.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
 import javax.validation.constraints.NotBlank;
@@ -10,12 +8,9 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class Pessoa {
+public class PessoaCreateDTO {
 
-    private Integer idPessoa;
     @NotNull
     @NotBlank
     private String nome;
@@ -24,6 +19,6 @@ public class Pessoa {
     private LocalDate dataNascimento;
     @NotNull
     @NotBlank
-    @Size(min = 11, max = 11)
+    @Size(min = 11, max = 11,  message = "cpf deve conter 11 caracteres")
     private String cpf;
 }

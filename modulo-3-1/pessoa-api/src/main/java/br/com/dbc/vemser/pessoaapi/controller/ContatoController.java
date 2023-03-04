@@ -1,4 +1,5 @@
 package br.com.dbc.vemser.pessoaapi.controller;
+import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/contato")
@@ -20,22 +23,22 @@ public class ContatoController {
     }
 
     @GetMapping
-    public List<Contato> list() {
+    public List<ContatoDTO> list() {
         return contatoService.list();
     }
 
     @GetMapping("/{idPessoa}")
-    public List<Contato> listByIdEndereco(@PathVariable("idPessoa") Integer idPessoa) {
+    public List<ContatoDTO> listByIdEndereco(@PathVariable("idPessoa") Integer idPessoa) {
         return contatoService.listByIdPessoa(idPessoa);
     }
 
     @PostMapping("/{idPessoa}")
-    public ResponseEntity<Contato> create(@PathVariable("idPessoa") Integer idPessoa, @RequestBody @Valid Contato contato) throws Exception {
+    public ResponseEntity<ContatoDTO> create(@PathVariable("idPessoa") Integer idPessoa, @RequestBody @Valid Contato contato) throws Exception {
         return new ResponseEntity<>(contatoService.create(idPessoa, contato), HttpStatus.OK);
     }
 
     @PutMapping("/{idContato}")
-    public ResponseEntity<Contato> update(@PathVariable("idContato") Integer id, @RequestBody @Valid Contato contatoAtualizar) throws Exception {
+    public ResponseEntity<ContatoDTO> update(@PathVariable("idContato") Integer id, @RequestBody @Valid Contato contatoAtualizar) throws Exception {
         return new ResponseEntity<>(contatoService.update(id, contatoAtualizar), HttpStatus.OK);
     }
 
