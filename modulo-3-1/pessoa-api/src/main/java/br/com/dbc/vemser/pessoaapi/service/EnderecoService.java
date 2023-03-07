@@ -19,10 +19,13 @@ public class EnderecoService {
 
     private final ObjectMapper objectMapper;
 
-    public EnderecoService(EnderecoRepository enderecoRepository, PessoaService pessoaService, ObjectMapper objectMapper) {
+    private final EmailService emailService;
+
+    public EnderecoService(EnderecoRepository enderecoRepository, PessoaService pessoaService, ObjectMapper objectMapper, EmailService emailService) {
         this.enderecoRepository = enderecoRepository;
         this.pessoaService = pessoaService;
         this.objectMapper = objectMapper;
+        this.emailService = emailService;
     }
 
     public EnderecoDTO create(Integer idPessoa, EnderecoCreateDTO endereco) throws Exception {
@@ -30,6 +33,7 @@ public class EnderecoService {
         Endereco enderecoEntity = objectMapper.convertValue(endereco, Endereco.class);
         Endereco enderecoCriado = enderecoRepository.create(enderecoEntity);
         EnderecoDTO enderecoDTO = objectMapper.convertValue(enderecoCriado, EnderecoDTO.class);
+        emailService.sendEmail(pessoaService.getPessoa(idPessoa));
         return enderecoDTO;
     }
 
@@ -51,11 +55,13 @@ public class EnderecoService {
         enderecoRecuperado.setCidade(enderecoAtualizar.getCidade());
         enderecoRecuperado.setEstado(enderecoAtualizar.getEstado());
         enderecoRecuperado.setPais(enderecoAtualizar.getPais());
+        emailService.sendEmail(pessoaService.getPessoa(id));
         return objectMapper.convertValue(enderecoRecuperado, EnderecoDTO.class);
     }
 
     public void delete(Integer id) throws Exception {
         Endereco enderecoRecuperado = getEndereco(id);
+        emailService.sendEmail(pessoaService.getPessoa(id));
         enderecoRepository.delete(enderecoRecuperado);
     }
 

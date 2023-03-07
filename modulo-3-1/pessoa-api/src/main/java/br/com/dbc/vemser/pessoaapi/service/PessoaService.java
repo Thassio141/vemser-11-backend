@@ -18,9 +18,12 @@ public class PessoaService {
 
     private final ObjectMapper objectMapper;
 
-    public PessoaService(PessoaRepository pessoaRepository, ObjectMapper objectMapper){
+    private final EmailService emailService;
+
+    public PessoaService(PessoaRepository pessoaRepository, ObjectMapper objectMapper, EmailService emailService){
         this.pessoaRepository = pessoaRepository;
         this.objectMapper = objectMapper;
+        this.emailService = emailService;
     }
 
     public PessoaDTO create(PessoaCreateDTO pessoa) throws Exception {
@@ -28,6 +31,7 @@ public class PessoaService {
         Pessoa pessoaEntity = objectMapper.convertValue(pessoa,Pessoa.class);
         Pessoa pessoaCriada = pessoaRepository.create(pessoaEntity);
         PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaCriada, PessoaDTO.class);
+        emailService.sendEmail(pessoaCriada);
         return pessoaDTO;
     }
 

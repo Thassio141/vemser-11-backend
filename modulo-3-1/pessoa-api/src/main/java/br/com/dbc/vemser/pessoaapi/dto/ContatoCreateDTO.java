@@ -1,11 +1,15 @@
 package br.com.dbc.vemser.pessoaapi.dto;
 
 import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ContatoCreateDTO {
     private Integer idPessoa;
@@ -18,4 +22,6 @@ public class ContatoCreateDTO {
     @NotNull
     @NotBlank
     private String descricao;
+
+
 }

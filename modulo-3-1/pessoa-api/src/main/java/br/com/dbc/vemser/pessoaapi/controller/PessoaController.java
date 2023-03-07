@@ -53,18 +53,17 @@ public class PessoaController {
         log.info("Pessoa criando..");
         PessoaDTO p = pessoaService.create(pessoa);
         log.info("Pessoa criada!");
-        return new ResponseEntity<>(p, HttpStatus.OK);
+        return new ResponseEntity<>(pessoaService.create(p), HttpStatus.OK);
     }
 
     @PutMapping("/{idPessoa}") // PUT localhost:8080/pessoa/1000
     public ResponseEntity<PessoaDTO> update(@PathVariable("idPessoa") Integer id, @Valid @RequestBody PessoaCreateDTO pessoaAtualizar) throws Exception {
-        PessoaDTO p = pessoaService.update(id,pessoaAtualizar);
-        return new ResponseEntity<>(p, HttpStatus.OK);
+        return new ResponseEntity<>(pessoaService.update(id,pessoaAtualizar), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{idPessoa}") // DELETE localhost:8080/pessoa/10
-    public void delete(@PathVariable("idPessoa") Integer id) throws Exception {
-        pessoaService.delete(id);
+    @DeleteMapping("/{idPessoa}")
+    public ResponseEntity<Void> delete() {
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/ambiente")

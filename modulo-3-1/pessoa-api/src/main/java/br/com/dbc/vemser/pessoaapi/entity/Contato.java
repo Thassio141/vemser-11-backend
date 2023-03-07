@@ -13,13 +13,11 @@ import javax.validation.constraints.Size;
 public class Contato {
     private Integer idContato;
     private Integer idPessoa;
-    @NotNull
+
     private TipoContato tipoContato;
-    @NotNull
-    @Size(max=13)
+
     private String numero;
 
-    @NotNull
-    @NotBlank
+
     private String descricao;
 }
