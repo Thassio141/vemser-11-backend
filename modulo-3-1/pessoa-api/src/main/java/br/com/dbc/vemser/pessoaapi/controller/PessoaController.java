@@ -4,6 +4,9 @@ import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
 import br.com.dbc.vemser.pessoaapi.service.PropertieReader;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +22,7 @@ import java.util.List;
 @RequestMapping("/pessoa") // localhost:8080/pessoa
 @Validated
 @Slf4j
-public class PessoaController {
+public class PessoaController implements PessoaInterfaceController{
 
     private final PessoaService pessoaService;
     private final PropertieReader propertieReader;
