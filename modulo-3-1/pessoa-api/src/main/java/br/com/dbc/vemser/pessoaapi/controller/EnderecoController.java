@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/endereco")
 @Validated
 @Slf4j
-public class EnderecoController {
+public class EnderecoController implements EnderecoInterfaceController{
     private final EnderecoService enderecoService;
 
     public EnderecoController(EnderecoService enderecoService) {

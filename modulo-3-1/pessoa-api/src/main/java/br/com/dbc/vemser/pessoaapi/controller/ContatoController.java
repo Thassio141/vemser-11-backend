@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/contato")
 @Validated
 @Slf4j
-public class ContatoController {
+public class ContatoController implements ContatoInterfaceController{
     private final ContatoService contatoService;
 
     public ContatoController(ContatoService contatoService) {

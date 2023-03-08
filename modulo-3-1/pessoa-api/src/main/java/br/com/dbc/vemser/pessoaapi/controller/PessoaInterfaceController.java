@@ -21,15 +21,6 @@ public interface PessoaInterfaceController {
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }
     )
-
-    @Operation(summary = "Listar pessoas", description = "Lista todas as pessoas do banco")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas"),
-                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
-                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
-            }
-    )
     @GetMapping // GET localhost:8080/pessoa
     public List<PessoaDTO> list();
 
