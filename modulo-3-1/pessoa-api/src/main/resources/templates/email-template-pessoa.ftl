@@ -25,12 +25,21 @@
                             <br> <b>${pessoa.getCpf()}</b> <br>
                             <p>Data de nascimento:</p>
                             <br> <b>${pessoa.getDataNascimento()}</b>
+                            <p>Endereço Credenciais:</p>
+                            <br> <b>${endereco.getTipo()}</b>
+                            <br> <b>${endereco.getLogradouro()}</b>
+                            <br> <b>${endereco.getNumero()}</b>
+                            <br> <b>${endereco.getComplemento()}</b>
+                            <br> <b>${endereco.getCep()}</b>
+                            <br> <b>${endereco.getCidade()}</b>
+                            <br> <b>${endereco.getEstado()}</b>
+                            <br> <b>${endereco.getPais()}</b>
+                            <p>${funcao}</p>
 
 
                         </div>
                         <div>
                             <br>"Sharing the knowledge is biggest learning" <br> <br>
-                            <br> <br> <b>${nome}</b>
                             <br>
                         </div>
                     </td>

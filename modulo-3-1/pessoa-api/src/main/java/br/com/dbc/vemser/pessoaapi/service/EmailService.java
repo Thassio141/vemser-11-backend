@@ -83,6 +83,30 @@ public class EmailService {
             throw new RegraDeNegocioException("ERRO ao enviar e-mail.");
         }
     }
+    // tipoFuncao = GET , Post , put , delete
+    public void sendEmailEndereco(Pessoa pessoa , Endereco endereco, String tipoFuncao) throws RegraDeNegocioException {
+        String mensagem = null;
+        MimeMessage mimeMessage = emailSender.createMimeMessage();
+        try {
+
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+            mimeMessageHelper.setFrom(from);
+            mimeMessageHelper.setTo(pessoa.getEmail());
+            mimeMessageHelper.setSubject("E-mail Template");
+            switch (tipoFuncao) {
+                case "1" -> mensagem = "Endereço Criado";
+                case "2" -> mensagem = "Endereço Editado";
+                case "3" -> mensagem = "Endereço Excluido";
+            }
+            mimeMessageHelper.setText(getEnderecoTemplate(pessoa, endereco , mensagem), true);
+
+            emailSender.send(mimeMessageHelper.getMimeMessage());
+        } catch (MessagingException | IOException | TemplateException e) {
+            e.printStackTrace();
+            throw new RegraDeNegocioException("ERRO ao enviar e-mail.");
+        }
+    }
 
     public String getContentFromTemplate() throws IOException, TemplateException {
         Map<String, Object> dados = new HashMap<>();
@@ -98,6 +122,16 @@ public class EmailService {
         dados.put("nome", "Pessoal do sistema");
         dados.put("pessoa", pessoa);
 
+        Template template = fmConfiguration.getTemplate("email-template-pessoa.ftl");
+        String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
+        return html;
+    }
+
+    public String getEnderecoTemplate(Pessoa pessoa, Endereco endereco, String mensagem) throws IOException, TemplateException {
+        Map<String, Object> dados = new HashMap<>();
+        dados.put("pessoa", pessoa);
+        dados.put("endereco", endereco);
+        dados.put("funcao", mensagem);
 
         Template template = fmConfiguration.getTemplate("email-template-pessoa.ftl");
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);

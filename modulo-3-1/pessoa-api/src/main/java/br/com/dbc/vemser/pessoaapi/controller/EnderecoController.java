@@ -48,7 +48,8 @@ public class EnderecoController implements EnderecoInterfaceController{
     }
 
     @DeleteMapping("/{idEndereco}")
-    public ResponseEntity<Void> delete() throws Exception {
+    public ResponseEntity<Void> delete(@PathVariable Integer idEndereco) throws Exception {
+        enderecoService.delete(idEndereco);
         return ResponseEntity.ok().build();
     }
 }

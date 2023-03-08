@@ -22,4 +22,6 @@ public class Pessoa {
     private LocalDate dataNascimento;
 
     private String cpf;
+
+    private String email;
 }

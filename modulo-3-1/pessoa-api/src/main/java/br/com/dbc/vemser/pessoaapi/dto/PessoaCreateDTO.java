@@ -29,4 +29,7 @@ public class PessoaCreateDTO {
     @Size(min = 11, max = 11,  message = "cpf deve conter 11 caracteres")
     @Schema(description = "CPF da pessoa" , example = "011.223.444-55" , required = true)
     private String cpf;
+
+    @Schema(description = "Email da pessoa" , example = "thassio@gmail.com" , required = true)
+    private String email;
 }

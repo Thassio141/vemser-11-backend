@@ -65,5 +65,5 @@ public interface ContatoInterfaceController {
             }
     )
     @DeleteMapping("/{idContato}")
-    public ResponseEntity<Void> delete();
+    public ResponseEntity<Void> delete(@PathVariable Integer idContato) throws Exception;
 }

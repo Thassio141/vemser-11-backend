@@ -83,5 +83,5 @@ public interface EnderecoInterfaceController {
     )
 
     @DeleteMapping("/{idEndereco}")
-    public ResponseEntity<Void> delete() throws Exception;
+    public ResponseEntity<Void> delete(@PathVariable Integer idEndereco) throws Exception;
 }

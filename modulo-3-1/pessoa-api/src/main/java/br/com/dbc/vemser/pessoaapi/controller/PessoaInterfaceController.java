@@ -55,5 +55,5 @@ public interface PessoaInterfaceController {
             }
     )
     @DeleteMapping("/{idPessoa}")
-    public ResponseEntity<Void> delete();
+    public ResponseEntity<Void> delete(@PathVariable Integer idPessoa) throws Exception;
 }

@@ -62,7 +62,8 @@ public class PessoaController implements PessoaInterfaceController{
     }
 
     @DeleteMapping("/{idPessoa}")
-    public ResponseEntity<Void> delete() {
+    public ResponseEntity<Void> delete(@PathVariable Integer idPessoa) throws Exception {
+        pessoaService.delete(idPessoa);
         return ResponseEntity.ok().build();
     }
 

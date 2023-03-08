@@ -45,7 +45,8 @@ public class ContatoController implements ContatoInterfaceController{
     }
 
     @DeleteMapping("/{idContato}")
-    public ResponseEntity<Void> delete() {
+    public ResponseEntity<Void> delete(@PathVariable Integer idContato) throws Exception {
+        contatoService.delete(idContato);
         return ResponseEntity.ok().build();
     }
 }
