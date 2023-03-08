@@ -22,9 +22,11 @@ public class PessoaCreateDTO {
     private String nome;
     @NotNull
     @Past
+    @Schema(description = "Data de Nascimento da pessoa" , example = "11/09/2001" , required = true)
     private LocalDate dataNascimento;
     @NotNull
     @NotBlank
     @Size(min = 11, max = 11,  message = "cpf deve conter 11 caracteres")
+    @Schema(description = "CPF da pessoa" , example = "011.223.444-55" , required = true)
     private String cpf;
 }
