@@ -1,7 +1,9 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
+import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,21 +19,18 @@ import java.util.List;
 @RequestMapping("/contato")
 @Validated
 @Slf4j
+@RequiredArgsConstructor
 public class ContatoController implements ContatoInterfaceController{
     private final ContatoService contatoService;
 
-    public ContatoController(ContatoService contatoService) {
-        this.contatoService = contatoService;
-    }
-
     @GetMapping
-    public List<ContatoDTO> list() {
-        return contatoService.list();
+    public ResponseEntity<List<ContatoDTO>> list() {
+        return new ResponseEntity<>(contatoService.list(), HttpStatus.OK);
     }
 
     @GetMapping("/{idPessoa}")
-    public List<ContatoDTO> listByIdEndereco(@PathVariable("idPessoa") Integer idPessoa) {
-        return contatoService.listByIdPessoa(idPessoa);
+    public ResponseEntity<List<ContatoEntity>> listById(@PathVariable("idPessoa") Integer idPessoa) throws Exception {
+        return new ResponseEntity<>(contatoService.listByIdPessoa(idPessoa), HttpStatus.OK);
     }
 
     @PostMapping("/{idPessoa}")

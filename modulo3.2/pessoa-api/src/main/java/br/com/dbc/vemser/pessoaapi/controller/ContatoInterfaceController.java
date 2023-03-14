@@ -2,6 +2,7 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
+import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -21,8 +22,7 @@ public interface ContatoInterfaceController {
             }
     )
     @GetMapping // GET localhost:8080/pessoa
-    public List<ContatoDTO> list();
-
+    public ResponseEntity<List<ContatoDTO>> list();
     @Operation(summary = "Listar contatos pelo id da pessoa", description = "Lista todos os contatos pelo id da pessoa do banco")
     @ApiResponses(
             value = {
@@ -32,7 +32,7 @@ public interface ContatoInterfaceController {
             }
     )
     @GetMapping("/{idPessoa}")
-    public List<ContatoDTO> listByIdEndereco(@PathVariable("idPessoa") Integer idPessoa);
+    public ResponseEntity<List<ContatoEntity>> listById(@PathVariable("idPessoa") Integer idPessoa)  throws Exception;
 
     @Operation(summary = "Criar contato", description = "Criar contato do banco")
     @ApiResponses(

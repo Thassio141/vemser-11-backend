@@ -43,8 +43,7 @@ public class PessoaService {
                 .collect(Collectors.toList());
     }
 
-    public PessoaDTO update(Integer id,
-                            PessoaCreateDTO pessoaAtualizar) throws Exception {
+    public PessoaDTO update(Integer id, PessoaCreateDTO pessoaAtualizar) throws Exception {
         PessoaEntity pessoaRecuperada = getPessoa(id);
 
         pessoaRecuperada.setCpf(pessoaAtualizar.getCpf());

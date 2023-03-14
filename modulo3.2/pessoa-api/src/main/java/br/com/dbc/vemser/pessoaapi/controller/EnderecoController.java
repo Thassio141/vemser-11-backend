@@ -1,7 +1,12 @@
 package br.com.dbc.vemser.pessoaapi.controller;
+import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
+import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
+import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
+import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,26 +20,23 @@ import java.util.List;
 @RequestMapping("/endereco")
 @Validated
 @Slf4j
+@RequiredArgsConstructor
 public class EnderecoController implements EnderecoInterfaceController{
     private final EnderecoService enderecoService;
 
-    public EnderecoController(EnderecoService enderecoService) {
-        this.enderecoService = enderecoService;
-    }
-
     @GetMapping
-    public List<EnderecoDTO> list() {
-        return enderecoService.list();
+    public ResponseEntity<List<EnderecoDTO>> list() {
+        return new ResponseEntity<>(enderecoService.list(), HttpStatus.OK);
     }
 
     @GetMapping("/{idEndereco}")
-    public List<EnderecoDTO> listByIdEndereco(@PathVariable("idEndereco") Integer idEndereco) {
-        return enderecoService.listByIdEndereco(idEndereco);
+    public ResponseEntity<List<EnderecoEntity>> listByIdEndereco(@PathVariable("idEndereco") Integer idEndereco) throws Exception{
+        return new ResponseEntity<>(enderecoService.listByIdEndereco(idEndereco), HttpStatus.OK);
     }
 
     @GetMapping("/{idPessoa}/pessoa")
-    public List<EnderecoDTO> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
-        return enderecoService.listByIdEndereco(idPessoa);
+    public ResponseEntity<List<EnderecoEntity>> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) throws Exception {
+        return new ResponseEntity<>(enderecoService.listByIdEndereco(idPessoa), HttpStatus.OK);
     }
 
     @PostMapping("/{idPessoa}")
