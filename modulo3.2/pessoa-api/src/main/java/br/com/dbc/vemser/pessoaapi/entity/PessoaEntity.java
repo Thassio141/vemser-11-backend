@@ -33,18 +33,18 @@ public class PessoaEntity {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa")
     @JsonIgnore
     private Set<ContatoEntity> contatos;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="PESSOA_X_PESSOA_ENDERECO",
-    joinColumns = @JoinColumn(name = "id_pessoa"))
-//    InverseJoinColumns = @J)
+    joinColumns = @JoinColumn(name = "id_pessoa"),
+    inverseJoinColumns = @JoinColumn(name= "id_endereco"))
     @JsonIgnore
     private Set<EnderecoEntity> enderecos;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa")
     @JsonIgnore
     private Set<PetEntity> pets;
 }

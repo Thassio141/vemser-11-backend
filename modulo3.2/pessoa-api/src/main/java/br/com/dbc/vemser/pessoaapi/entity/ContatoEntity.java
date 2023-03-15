@@ -16,12 +16,14 @@ public class ContatoEntity {
     @SequenceGenerator(name="CONTATO_SEQ", sequenceName = "seq_contato2", allocationSize=1)
     @Column(name = "id_contato")
     private Integer idContato;
-    @Column(name = "id_pessoa")
-    private Integer idPessoa;
     @Column(name = "tipo_contato")
     private TipoContato tipoContato;
     @Column(name = "numero")
     private String numero;
     @Column(name = "descricao")
     private String descricao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
+    private PessoaEntity pessoa;
 }

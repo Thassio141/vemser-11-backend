@@ -3,6 +3,8 @@ package br.com.dbc.vemser.pessoaapi.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,9 +16,6 @@ public class EnderecoEntity {
     @SequenceGenerator(name = "ENDERECO_SEQ", sequenceName = "seq_endereco2", allocationSize = 1)
     @Column(name = "id_endereco")
     private Integer idEndereco;
-    @Column(name = "id_pessoa")
-    private Integer idPessoa;
-
     @Column(name = "tipo")
     private TipoEndereco tipo;
 
@@ -35,4 +34,8 @@ public class EnderecoEntity {
     private String estado;
     @Column(name = "pais")
     private String pais;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
+    private Set<PessoaEntity> pessoa;
 }

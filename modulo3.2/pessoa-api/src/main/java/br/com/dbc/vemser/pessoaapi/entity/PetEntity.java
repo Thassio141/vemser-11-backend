@@ -18,15 +18,15 @@ public class PetEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PET_SEQ")
     @SequenceGenerator(name = "PET_SEQ", sequenceName = "seq_pet", allocationSize = 1)
     @Column(name = "id_pet")
-    private Integer id_pet;
-    @Column(name = "id_pessoa")
-    private Integer id_pessoa;
+    private Integer idPet;
+    @Column(name = "id_pessoa", insertable = false, updatable = false)
+    private Integer idPessoa;
     @Column(name = "nome")
     private String nome;
     @Column(name = "tipo")
     private TipoPet tipoPet;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_pet",referencedColumnName = "id_pet")
-    private PetEntity pet;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_pessoa",referencedColumnName = "id_pessoa")
+    private PessoaEntity pessoa;
 }
