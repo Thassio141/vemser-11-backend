@@ -1,13 +1,15 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-// @Data NÃO PODE USAR DATA
 @Getter
 @Setter
 @Entity(name = "Pessoa")
@@ -30,4 +32,19 @@ public class PessoaEntity {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<ContatoEntity> contatos;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="PESSOA_X_PESSOA_ENDERECO",
+    joinColumns = @JoinColumn(name = "id_pessoa"))
+//    InverseJoinColumns = @J)
+    @JsonIgnore
+    private Set<EnderecoEntity> enderecos;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<PetEntity> pets;
 }

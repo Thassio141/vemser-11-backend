@@ -3,12 +3,8 @@ package br.com.dbc.vemser.pessoaapi.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Getter
 @Setter
 @Entity(name = "Endereco")
@@ -18,8 +14,8 @@ public class EnderecoEntity {
     @SequenceGenerator(name = "ENDERECO_SEQ", sequenceName = "seq_endereco2", allocationSize = 1)
     @Column(name = "id_endereco")
     private Integer idEndereco;
-//    @Column(name = "id_pessoa")
-//    private Integer idPessoa;
+    @Column(name = "id_pessoa")
+    private Integer idPessoa;
 
     @Column(name = "tipo")
     private TipoEndereco tipo;
