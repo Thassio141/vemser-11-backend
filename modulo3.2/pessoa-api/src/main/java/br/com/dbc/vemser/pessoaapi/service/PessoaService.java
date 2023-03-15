@@ -2,6 +2,7 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
@@ -10,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -78,12 +81,16 @@ public class PessoaService {
     }
 
     public PessoaEntity getPessoa(Integer id) throws Exception {
-//        PessoaEntity pessoaRecuperada = pessoaRepositoryOld.list().stream()
-//                .filter(pessoa -> pessoa.getIdPessoa().equals(id))
-//                .findFirst()
 
         PessoaEntity pessoaRecuperada = pessoaRepository.findById(id)
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada!"));
         return pessoaRecuperada;
+    }
+
+    public void adicionarEndereco(EnderecoEntity endereco , PessoaEntity pessoa){
+        Set<EnderecoEntity> enderecoEntitySet = new HashSet<>();
+        enderecoEntitySet.add(endereco);
+        pessoa.setEnderecos(enderecoEntitySet);
+        pessoaRepository.save(pessoa);
     }
 }

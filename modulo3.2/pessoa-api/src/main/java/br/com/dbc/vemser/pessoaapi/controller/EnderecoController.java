@@ -1,7 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
-import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
 import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,13 +26,13 @@ public class EnderecoController implements EnderecoInterfaceController{
     }
 
     @GetMapping("/{idEndereco}")
-    public ResponseEntity<List<EnderecoEntity>> listByIdEndereco(@PathVariable("idEndereco") Integer idEndereco) throws Exception{
-        return new ResponseEntity<>(enderecoService.listByIdEndereco(idEndereco), HttpStatus.OK);
+    public ResponseEntity<EnderecoDTO> listByIdEndereco(@PathVariable("idEndereco") Integer idEndereco) throws Exception{
+        return new ResponseEntity<>(enderecoService.getEnderecoDTO(idEndereco), HttpStatus.OK);
     }
 
     @GetMapping("/{idPessoa}/pessoa")
-    public ResponseEntity<List<EnderecoEntity>> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) throws Exception {
-        return new ResponseEntity<>(enderecoService.listByIdEndereco(idPessoa), HttpStatus.OK);
+    public ResponseEntity<List<EnderecoDTO>> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) throws Exception {
+        return new ResponseEntity<>(enderecoService.listEnderecoDTO(idPessoa), HttpStatus.OK);
     }
 
     @PostMapping("/{idPessoa}")

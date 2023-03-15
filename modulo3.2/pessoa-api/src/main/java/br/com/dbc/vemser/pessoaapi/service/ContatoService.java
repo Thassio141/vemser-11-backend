@@ -3,6 +3,7 @@ package br.com.dbc.vemser.pessoaapi.service;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
+import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +46,8 @@ public class ContatoService {
 
     public ContatoDTO update(Integer id, ContatoCreateDTO contatoAtualizar) throws Exception {
         ContatoEntity contatoRecuperado = getContato(id);
-        pessoaService.getPessoa(contatoAtualizar.getIdPessoa());
+        PessoaEntity pessoa = pessoaService.getPessoa(contatoAtualizar.getIdPessoa());
+        contatoRecuperado.setPessoa(pessoa);
         contatoRecuperado.setTipoContato(contatoAtualizar.getTipoContato());
         contatoRecuperado.setNumero(contatoAtualizar.getNumero());
         contatoRecuperado.setDescricao(contatoAtualizar.getDescricao());

@@ -1,8 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
-import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
-import br.com.dbc.vemser.pessoaapi.dto.FilmeCreateDTO;
-import br.com.dbc.vemser.pessoaapi.dto.FilmeDTO;
+import br.com.dbc.vemser.pessoaapi.dto.*;
 import br.com.dbc.vemser.pessoaapi.entity.FilmeEntity;
 import br.com.dbc.vemser.pessoaapi.service.FilmeService;
 import lombok.RequiredArgsConstructor;
@@ -47,5 +45,10 @@ public class FilmeController {
     public ResponseEntity<Void> delete(@PathVariable Integer idFilme) throws Exception {
         filmeService.delete(idFilme);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/avaliar/{idUsuario}")
+    public ResponseEntity<PessoaFilmeDTO> avaliar(@PathVariable("idUsuario") Integer idUsuario, @RequestBody @Valid PessoaFilmeCreateDTO pessoaFilmeCreateDTO) throws Exception{
+        return new ResponseEntity<>(filmeService.avaliarFilme(idUsuario,pessoaFilmeCreateDTO), HttpStatus.OK);
     }
 }

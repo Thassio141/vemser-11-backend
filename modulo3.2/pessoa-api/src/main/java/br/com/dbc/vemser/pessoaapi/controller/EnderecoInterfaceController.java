@@ -2,7 +2,6 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
-import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -37,7 +36,7 @@ public interface EnderecoInterfaceController {
     )
 
     @GetMapping("/{idEndereco}")
-    public ResponseEntity<List<EnderecoEntity>> listByIdEndereco(@PathVariable("idEndereco") Integer idEndereco) throws Exception;
+    public ResponseEntity<EnderecoDTO> listByIdEndereco(@PathVariable("idEndereco") Integer idEndereco) throws Exception;
     @Operation(summary = "Listar o endereco pelo id da pessoa", description = "Listar o endereco pelo id da pessoa")
     @ApiResponses(
             value = {
@@ -47,7 +46,7 @@ public interface EnderecoInterfaceController {
             }
     )
     @GetMapping("/{idPessoa}/pessoa")
-    public ResponseEntity<List<EnderecoEntity>> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) throws Exception;
+    public ResponseEntity<List<EnderecoDTO>> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) throws Exception;
     @Operation(summary = "Criar endereço", description = "Criar o endereço e enviar para o banco")
     @ApiResponses(
             value = {

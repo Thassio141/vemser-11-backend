@@ -2,9 +2,15 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.FilmeCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.FilmeDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaFilmeCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaFilmeDTO;
 import br.com.dbc.vemser.pessoaapi.entity.FilmeEntity;
+import br.com.dbc.vemser.pessoaapi.entity.PessoaFilmeEntity;
+import br.com.dbc.vemser.pessoaapi.entity.PessoaFilmeID;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.FilmeRepository;
+import br.com.dbc.vemser.pessoaapi.repository.PessoaFilmeRepository;
+import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +24,14 @@ public class FilmeService {
     private final FilmeRepository filmeRepository;
     private final ObjectMapper objectMapper;
 
-    public FilmeService(FilmeRepository filmeRepository, ObjectMapper objectMapper) {
+    private final PessoaFilmeRepository pessoaFilmeRepository;
+    private final PessoaService pessoaService;
+
+    public FilmeService(FilmeRepository filmeRepository, ObjectMapper objectMapper, PessoaRepository pessoaRepository, PessoaFilmeRepository pessoaFilmeRepository, PessoaService pessoaService) {
         this.filmeRepository = filmeRepository;
         this.objectMapper = objectMapper;
+        this.pessoaFilmeRepository = pessoaFilmeRepository;
+        this.pessoaService = pessoaService;
     }
 
     public FilmeDTO create(FilmeCreateDTO filme) throws Exception {
@@ -61,7 +72,20 @@ public class FilmeService {
 
     private FilmeEntity getFilme(Integer id) throws RegraDeNegocioException {
         FilmeEntity filmeRecuperado = filmeRepository.findById(id)
-                .orElseThrow(() -> new RegraDeNegocioException("Endereco não encontrado"));
+                .orElseThrow(() -> new RegraDeNegocioException("Filme não encontrado"));
         return filmeRecuperado;
+    }
+
+    public PessoaFilmeDTO avaliarFilme(Integer idUsuario, PessoaFilmeCreateDTO pessoaFilmeCreateDTO) throws Exception {
+        pessoaService.getPessoa(idUsuario);
+        getFilme(pessoaFilmeCreateDTO.getIdFilme());
+
+        PessoaFilmeID pessoaFilmeID = new PessoaFilmeID();
+        pessoaFilmeID.setIdPessoa(idUsuario);
+        pessoaFilmeID.setIdFilme(pessoaFilmeCreateDTO.getIdFilme());
+        PessoaFilmeEntity pessoaFilmeEntity = objectMapper.convertValue(pessoaFilmeCreateDTO, PessoaFilmeEntity.class);
+        pessoaFilmeEntity.setPessoaFilmeID(pessoaFilmeID);
+        pessoaFilmeRepository.save(pessoaFilmeEntity);
+        return objectMapper.convertValue(pessoaFilmeEntity, PessoaFilmeDTO.class);
     }
 }
