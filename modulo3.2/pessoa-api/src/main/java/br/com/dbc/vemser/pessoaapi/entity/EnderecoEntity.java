@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "Endereco")
+@Entity(name = "Endereco_Pessoa")
 public class EnderecoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ENDERECO_SEQ")
@@ -35,7 +36,7 @@ public class EnderecoEntity {
     @Column(name = "pais")
     private String pais;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "enderecos")
     private Set<PessoaEntity> pessoa;
 }

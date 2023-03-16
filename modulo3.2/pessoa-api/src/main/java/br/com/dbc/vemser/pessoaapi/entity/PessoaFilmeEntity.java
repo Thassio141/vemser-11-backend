@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,15 @@ public class PessoaFilmeEntity{
     private String descricao;
     @Column(name = "nota_pessoa")
     private Integer notaPessoa;
+
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JsonIgnore
+    @JoinColumn(name = "id_pessoa" , referencedColumnName = "id_pessoa" , insertable = false, updatable = false)
+    private PessoaEntity pessoaEntity;
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JsonIgnore
+    @JoinColumn(name = "id_filme" , referencedColumnName = "id_filme" ,insertable = false, updatable = false)
+    private FilmeEntity filmeEntity;
 }

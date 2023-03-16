@@ -13,7 +13,7 @@ public interface EnderecoRepository extends JpaRepository<EnderecoEntity,Integer
 
     List<EnderecoEntity> findAllByPessoa(PessoaEntity pessoaEntity);
 
-    @Query("select e from Endereco e where e.pais = :pais")
+    @Query("select e from Endereco_Pessoa e where e.pais = :pais")
     List<EnderecoEntity> findByPais(String pais);
 
 }

@@ -16,7 +16,7 @@ public class FilmeCreateDTO {
 
     @NotBlank
     @Schema(description = "Descricao do filme" , example = "texto de descricao" , required = true)
-    private String descricao;
+    private String descricaoFilme;
 
     @NotNull
     @NotBlank

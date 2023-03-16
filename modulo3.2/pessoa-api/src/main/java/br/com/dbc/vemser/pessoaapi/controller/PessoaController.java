@@ -3,7 +3,9 @@ package br.com.dbc.vemser.pessoaapi.controller;
 import br.com.dbc.vemser.pessoaapi.controller.impl.IPessoaDoc;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaRelacoesDTO;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
+import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.EmailService;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
 import br.com.dbc.vemser.pessoaapi.service.PropertieReader;
@@ -72,5 +74,10 @@ public class PessoaController implements IPessoaDoc {
         pessoaService.delete(id);
         log.info("Pessoa deletada com sucesso");
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/pessoa-relacoes")
+    public ResponseEntity<List<PessoaRelacoesDTO>> listaRelacoes() throws RegraDeNegocioException {
+        return new ResponseEntity<>(pessoaService.listRelacoes(), HttpStatus.OK);
     }
 }

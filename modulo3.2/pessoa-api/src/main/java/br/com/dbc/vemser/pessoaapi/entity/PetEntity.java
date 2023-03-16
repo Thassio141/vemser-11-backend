@@ -22,7 +22,7 @@ public class PetEntity {
     @Column(name = "id_pessoa", insertable = false, updatable = false)
     private Integer idPessoa;
     @Column(name = "nome")
-    private String nome;
+    private String nomePet;
     @Column(name = "tipo")
     private TipoPet tipoPet;
 

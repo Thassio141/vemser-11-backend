@@ -47,4 +47,8 @@ public class PessoaEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa")
     @JsonIgnore
     private Set<PetEntity> pets;
+
+    @OneToMany(fetch= FetchType.LAZY, mappedBy = "pessoaEntity" )
+    @JsonIgnore
+    private Set<PessoaFilmeEntity> pessoaFilmeEntity;
 }

@@ -2,6 +2,7 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaRelacoesDTO;
 import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
@@ -92,5 +93,9 @@ public class PessoaService {
         enderecoEntitySet.add(endereco);
         pessoa.setEnderecos(enderecoEntitySet);
         pessoaRepository.save(pessoa);
+    }
+
+    public List<PessoaRelacoesDTO> listRelacoes() throws RegraDeNegocioException{
+        return pessoaRepository.listaPessoaRelacoes();
     }
 }

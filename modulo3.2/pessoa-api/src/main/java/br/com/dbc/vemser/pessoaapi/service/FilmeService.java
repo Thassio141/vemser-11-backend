@@ -51,8 +51,8 @@ public class FilmeService {
     public FilmeDTO update(Integer id, FilmeCreateDTO filmeAtualizar) throws Exception {
         FilmeEntity filmeRecuperado = getFilme(id);
         filmeRecuperado.setTipoFilme(filmeAtualizar.getTipo());
-        filmeRecuperado.setDescricao(filmeAtualizar.getDescricao());
-        filmeRecuperado.setNota(filmeAtualizar.getNota());
+        filmeRecuperado.setDescricaoFilme(filmeAtualizar.getDescricaoFilme());
+        filmeRecuperado.setNotaFilme(filmeAtualizar.getNota());
         return objectMapper.convertValue(filmeRecuperado, FilmeDTO.class);
     }
 
