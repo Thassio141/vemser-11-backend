@@ -1,8 +1,7 @@
 package teste;
 import org.junit.Assert;
 import org.junit.Test;
-import ContaCorrente.*;
-
+import conta.*;
 public class ContaTest {
 
     @Test

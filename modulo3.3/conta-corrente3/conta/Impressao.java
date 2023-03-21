@@ -1,6 +1,5 @@
-package ContaCorrente;
+package conta;
 
 public interface Impressao {
-
     void imprimir();
 }

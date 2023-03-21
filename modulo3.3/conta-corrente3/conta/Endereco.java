@@ -1,18 +1,31 @@
-package ContaCorrente;
+package conta;
 
 public class Endereco {
-
-    private int tipo , numero;
-    private String logradouro, complemento, cep ,cidade , estado, pais;
+    private int tipo; // 1- residencial / 2 - comercial;
+    private String logradouro;
+    private int numero;
+    private String complemento;
+    private String cep;
+    private String cidade;
+    private String estado;
+    private String pais;
 
     public void imprimirEndereco(){
-        if (tipo == 1){
-            System.out.printf("Enderço: %s %s residental %d %s %s %s %s \n", logradouro, complemento, numero, cep , cidade, estado, pais );
-        }
-        else {
-            System.out.printf("Enderço: %s %s comercial %d %s %s %s %s \n", logradouro, complemento, numero, cep , cidade, estado, pais );
+        System.out.println(this);
+    }
 
-        }
+    @Override
+    public String toString() {
+        return "com.br.vemser.Endereco{" +
+                "tipo=" + tipo +
+                ", logradouro='" + logradouro + '\'' +
+                ", numero=" + numero +
+                ", complemento='" + complemento + '\'' +
+                ", cep='" + cep + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", estado='" + estado + '\'' +
+                ", pais='" + pais + '\'' +
+                '}';
     }
 
     public int getTipo() {
@@ -23,20 +36,20 @@ public class Endereco {
         this.tipo = tipo;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
     public String getLogradouro() {
         return logradouro;
     }
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public String getComplemento() {
@@ -76,17 +89,6 @@ public class Endereco {
     }
 
     public void setPais(String pais) {
-        this.pais = pais;
-    }
-
-    public Endereco(int tipo, int numero, String logradouro, String complemento, String cep, String cidade, String estado, String pais) {
-        this.tipo = tipo;
-        this.numero = numero;
-        this.logradouro = logradouro;
-        this.complemento = complemento;
-        this.cep = cep;
-        this.cidade = cidade;
-        this.estado = estado;
         this.pais = pais;
     }
 }
