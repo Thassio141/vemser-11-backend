@@ -1,6 +1,7 @@
 package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.dto.LoginDTO;
+import com.dbc.pessoaapi.security.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +17,11 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AuthController {
 
+    private final TokenService tokenService;
+
     @PostMapping
     public String auth(@RequestBody @Valid LoginDTO loginDTO) {
         // FIXME adicionar mecanismo de autenticação para verificar se o usuário é válido e retornar o token
-        return "";
+        return tokenService.getToken(loginDTO);
     }
 }
