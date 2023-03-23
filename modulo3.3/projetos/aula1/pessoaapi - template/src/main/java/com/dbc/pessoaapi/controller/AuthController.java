@@ -1,6 +1,7 @@
 package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.dto.LoginDTO;
+import com.dbc.pessoaapi.entity.UsuarioEntity;
 import com.dbc.pessoaapi.security.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
