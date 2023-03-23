@@ -24,19 +24,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthController {
     private final TokenService tokenService;
-
+    private final AuthenticationManager authenticationManager;
     //FIXME injetar AuthenticationManager
 
     @PostMapping
     public String auth(@RequestBody @Valid LoginDTO loginDTO) throws RegraDeNegocioException {
 
         //FIXME criar objeto UsernamePasswordAuthenticationToken com o usuário e senha
-
+        UsernamePasswordAuthenticationToken userAuthDTO = new UsernamePasswordAuthenticationToken(loginDTO.getLogin(),loginDTO.getSenha());
         //FIXME utilizar AuthenticationManager para se autenticar
-
+        Authentication authentication = authenticationManager.authenticate(userAuthDTO);
         //FIXME recuperar usuário após da autenticação (getPrincipal())
-
+        Object principal = authentication.getPrincipal();
         //FIXME GERAR TOKEN (trocar null por usuarioEntity da autenticação)
-        return tokenService.generateToken(null);
+        UsuarioEntity usuarioEntity = (UsuarioEntity) principal;
+        return tokenService.generateToken(usuarioEntity);
     }
 }

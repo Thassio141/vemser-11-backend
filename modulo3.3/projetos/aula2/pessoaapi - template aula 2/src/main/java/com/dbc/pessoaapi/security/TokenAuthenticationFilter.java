@@ -19,14 +19,21 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String tokenFromHeader = getTokenFromHeader(request);
+
         UsernamePasswordAuthenticationToken user = tokenService.isValid(tokenFromHeader);
+
         SecurityContextHolder.getContext().setAuthentication(user);
+
         filterChain.doFilter(request, response);
     }
 
     private String getTokenFromHeader(HttpServletRequest request) {
         // FIXME RECUPERAR TOKEN DO HEADER
-        return null;
+        String token = request.getHeader("Authorization");
+        if (token == null){
+            return null;
+        }
+        return token;
     }
 
 }

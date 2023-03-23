@@ -57,6 +57,14 @@ public class SecurityConfiguration {
     }
 
     // FIXME adicionar Bean authenticationManager
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
     // FIXME adicionar Bean PasswordEncoder
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }

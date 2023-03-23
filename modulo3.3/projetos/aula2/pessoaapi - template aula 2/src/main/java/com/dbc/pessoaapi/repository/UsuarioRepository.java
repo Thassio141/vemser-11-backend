@@ -11,4 +11,5 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer>
     Optional<UsuarioEntity> findByLoginAndSenha(String login, String senha);
 
     // FIXME CRIAR FIND POR LOGIN
+    Optional<UsuarioEntity> findByLogin(String login);
 }
