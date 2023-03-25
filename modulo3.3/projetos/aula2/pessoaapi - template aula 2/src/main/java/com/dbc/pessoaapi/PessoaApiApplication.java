@@ -11,5 +11,4 @@ public class PessoaApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PessoaApiApplication.class, args);
 	}
-
 }

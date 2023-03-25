@@ -8,6 +8,7 @@ import com.dbc.pessoaapi.repository.UsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +45,17 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
 
         return objectMapper.convertValue(usuario, UsuarioDTO.class);
+    }
+
+    public Integer getIdLoggedUser() {
+        return Integer.parseInt(SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal()
+                .toString());
+    }
+
+    public UsuarioDTO getLoggedUser() throws RegraDeNegocioException {
+        return objectMapper.convertValue(usuarioRepository.findById(getIdLoggedUser()),UsuarioDTO.class);
     }
 }

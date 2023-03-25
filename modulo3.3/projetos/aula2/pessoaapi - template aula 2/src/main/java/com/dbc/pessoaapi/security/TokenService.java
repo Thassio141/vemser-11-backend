@@ -8,12 +8,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Date;
 
 @Service
+@Component
 public class TokenService {
 
     // FIXME RECUPERAR O TEMPO DE EXPIRAÇÃO DOS PROPERTIES
@@ -36,9 +38,9 @@ public class TokenService {
         // FIXME gerar token jwt
         Date now = new Date();
         Date exp = new Date(now.getTime() + Long.parseLong(expiration));
+        System.out.println(secret);
         return TOKEN_PREFIX + " " +
                 Jwts.builder()
-                        .setIssuer("vemser-api")
                         .claim(Claims.ID,usuarioEntity.getIdUsuario().toString())
                         .setIssuedAt(now)
                         .setExpiration(exp)
