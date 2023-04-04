@@ -46,3 +46,10 @@ db.especialidade.find({})
 db.especialidade.findOne()
 
 db.especialidade.find({nome: /^Fisio/})
+
+db.nomeDaColecao.deleteOne({ <condicao> })
+
+db.nomeDaColecao.updateOne(
+    { _id: 1 },
+    { $set: { nome: "João" } }
+ )

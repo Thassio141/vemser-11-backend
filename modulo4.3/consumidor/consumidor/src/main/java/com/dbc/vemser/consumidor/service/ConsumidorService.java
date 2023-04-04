@@ -1,0 +1,24 @@
+package com.dbc.vemser.consumidor.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.stereotype.Service;
+
+@Service
+@Slf4j
+public class ConsumidorService {
+
+    @KafkaListener(
+            topics = "${kafka.topic}",
+            groupId = "group1",
+            containerFactory = "listenerContainerFactory",
+            clientIdPrefix = "primeiroTopico")
+    public void lerMensagemDoTopicoCaixaDeCorreio(@Payload String message,
+                                                  @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key,
+                                                  @Header(KafkaHeaders.OFFSET) Long offset){
+        log.info("####{consume} offset -> '{}' key -> '{}' -> Consumed Object message -> '{}'  ", offset, key, message);
+    }
+}
