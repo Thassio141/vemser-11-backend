@@ -16,8 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import java.time.LocalDateTime;
-import java.util.List;
+
 import java.util.UUID;
 
 @Service
@@ -30,24 +29,21 @@ public class ProdutorService {
     @Value(value = "${kafka.topic}")
     private String topic;
 
-    public void sendTo(String mensagem, List<NomeChat> nomeChatList) throws JsonProcessingException {
-        MensagemDTO mensagemDTO = new MensagemDTO();
-        mensagemDTO.setUsuario("Thassio");
-        mensagemDTO.setMensagem(mensagem);
-        mensagemDTO.setDataCriacao(LocalDateTime.now());
-        String mensagemStr = objectMapper.writeValueAsString(mensagemDTO);
+    public void sendTo(MensagemDTO mensagemDTO, NomeChat nome) throws JsonProcessingException {
+        String mensagem = objectMapper.writeValueAsString(mensagemDTO);
 
-        for (NomeChat chat : nomeChatList) {
-            MessageBuilder<String> stringMessageBuilder = MessageBuilder.withPayload(mensagemStr)
-                    .setHeader(KafkaHeaders.TOPIC, chat.getTopico())
-                    .setHeader(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString())
-                    .setHeader(KafkaHeaders.PARTITION_ID, chat.getParticao())
-                    ;
+        MessageBuilder<String> stringMessageBuilder = MessageBuilder.withPayload(mensagem)
+                .setHeader(KafkaHeaders.TOPIC,topic)
+                .setHeader(KafkaHeaders.MESSAGE_KEY,UUID.randomUUID().toString());
 
+        if (nome != null) {
+            stringMessageBuilder
+                    .setHeader(KafkaHeaders.PARTITION_ID,nome.getParticao());
+        }
             Message<String> message = stringMessageBuilder.build();
 
-            ListenableFuture<SendResult<String, String>> enviadoParaTopico = kafkaTemplate.send(message);
-            enviadoParaTopico.addCallback(new ListenableFutureCallback<>() {
+            ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(message);
+            future.addCallback(new ListenableFutureCallback<>() {
                 @Override
                 public void onSuccess(SendResult result) {
                     log.info("Log enviado para o kafka contendo o texto: {} ", mensagem);
@@ -57,7 +53,6 @@ public class ProdutorService {
                 public void onFailure(Throwable ex) {
                     log.error("Erro ao publicar no kafka com a mensagem: {}", mensagem, ex);
                 }
-            });
-        }
+        });
     }
 }
